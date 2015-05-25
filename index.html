@@ -4,11 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Canvas Daora</title>
 </head>
-<body onload='Init()' onkeydown='move(window.event.keyCode)'>
+<body onload='Init()' onkeydown='z_onKeyPress(window.event.keyCode)'>
     <hr />
-    <center><h1>Jogo Muito Loco 3</h1></center>
+    <center><h1>Blue Parrot Down</h1></center>
     <hr />
-    <canvas id="meuCanvas" width=600 height=600 style="border:1px solid black;background:yellow">
+    <canvas id="meuCanvas" width=600 height=600 style="border:1px solid black;background:#0099CC">
         Seu navegador não suporta este recursoq
 
 
@@ -22,104 +22,78 @@
 </body>
 <script language="JavaScript">
 
+    var player = {
+        altura: 211,
+        largura: 308,
+        posx: 100,
+        posy: 100,
+        anstate: 0,
+        acrop: 0,
+        csprite: new Image(),
+        pontos: 0
+    };
+    player.csprite.src = 'images/bluebird.png';
+    var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
+    var bg = {
+        speed: 1,
+        altura: 600,
+        largura: 600,
+        posx: 0,
+        csprite: new Image()
+    };
+    bg.csprite.src = 'images/forest.jpg';
     function Init() {
         propDir = 1;
         propSpe = 2;
-        prop1 = [240, 585, 10, 10];
-        prop2 = [75, 75, 10, 0];
         canvas = document.getElementById("meuCanvas");
         ctx = canvas.getContext("2d");
-        ctx.fillRect(prop1[0], prop1[1], prop1[2], prop1[3]);
-        ctx.beginPath();
-        ctx.arc(prop2[0], prop2[1], prop2[2], prop2[3], Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
-        setInterval(newFrame, 33);
+        setInterval(update, 33);
+        setInterval(anim, 125);
         vertMov = 1;
         horiMov = 1;
     }
+    //Animação Ararinha
+    function anim() {
+        if (player.anstate < 6) {
+            player.anstate += 1;
+            player.acrop = a_acrop[player.anstate];
+        } else {
+            player.anstate = 0;
+            player.acrop = a_acrop[player.anstate];
+        }
+    }
     //FrameUpdate
-    function newFrame() {
-        ctx.fillStyle = 'yellow';
-        ctx.beginPath();
-        ctx.arc(prop2[0], prop2[1], prop2[2] + 1, prop2[3], Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
-        if (prop2[1] >= 585 || prop2[1] <= 5) {
-            if (propDir == 1) {
-                propDir = -1;
-            } else if (propDir == -1) {
-                propDir = 1;
-            }
+    function update() {
+        bg.posx -= bg.speed;
+        if (bg.posx < 0) {
+            bg.posx = 600;
         }
-        if (propDir == 1) {
-            if (prop2[1] <= 610) {
-                prop2[1] = prop2[1] + (propSpe * propDir);
-            }
-            if (prop2[1] > 601) {
-                prop2[1] = -20;
-            }
-        }
-        if (propDir == -1) {
-            if (prop2[1] >= -20) {
-                prop2[1] = prop2[1] + (propSpe * propDir);
-            }
-            if (prop2[1] > 601) {
-                prop2[1] = 610;
-            }
-        }
-        ctx.fillStyle = 'black';
-        ctx.beginPath();
-        ctx.arc(prop2[0], prop2[1], prop2[2], prop2[3], Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(bg.csprite, bg.posx, 0);
+        ctx.drawImage(bg.csprite, bg.posx - 600, 0);
+        ctx.drawImage(player.csprite,player.acrop,0,player.largura,player.altura,player.posx,player.posy,185.4,126.6);
     }
 
 
 
     //Direções Movimentos
-    function move(direction) {
+    function z_onKeyPress(keyid) {
         //Cima
-        if (direction == 87 && vertMov == 1 || direction == 38 && vertMov == 1) {
-            ctx.clearRect(prop1[0], prop1[1], prop1[2], prop1[3]);
-            prop1[1] = prop1[1] - 10;
-            if (prop1[1] <= -10) {
-                prop1[1] = 600;
-            }
-            ctx.fillRect(prop1[0], prop1[1], prop1[2], prop1[3]);
+        if (keyid == 87 && vertMov == 1 || keyid == 38 && vertMov == 1) {
+
         }
         //Baixo
-        if (direction == 83 && vertMov == 1 || direction == 40 && vertMov == 1) {
-            ctx.clearRect(prop1[0], prop1[1], prop1[2], prop1[3]);
-            prop1[1] = prop1[1] + 10;
-            if (prop1[1] >= 610) {
-                prop1[1] = 0;
-            }
-            ctx.fillRect(prop1[0], prop1[1], prop1[2], prop1[3]);
+        if (keyid == 83 && vertMov == 1 || keyid == 40 && vertMov == 1) {
+
         }
         //Esquerda
-        if (direction == 65 && horiMov == 1 || direction == 37 && horiMov == 1) {
-            ctx.clearRect(prop1[0], prop1[1], prop1[2], prop1[3]);
-            prop1[0] = prop1[0] - 10;
-            if (prop1[0] <= -100) {
-                prop1[0] = 590;
-            }
-            ctx.fillRect(prop1[0], prop1[1], prop1[2], prop1[3]);
+        if (keyid == 65 && horiMov == 1 || keyid == 37 && horiMov == 1) {
+
         }
         //Direita
-        if (direction == 68 && horiMov == 1 || direction == 39 && horiMov == 1) {
-            ctx.clearRect(prop1[0], prop1[1], prop1[2], prop1[3]);
-            prop1[0] = prop1[0] + 10;
-            if (prop1[0] >= 600) {
-                prop1[0] = -90;
-            }
-            ctx.fillRect(prop1[0], prop1[1], prop1[2], prop1[3]);
-        }
-        if (direction == 82) {
-            alert("prop0 = " + prop1[0] + " prop1 = " + prop1[1]);
-        }
+        if (keyid == 68 && horiMov == 1 || keyid == 39 && horiMov == 1) {
 
-
+        }
     }
 </script>
 </html>
