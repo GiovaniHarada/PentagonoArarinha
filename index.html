@@ -43,7 +43,7 @@
     };
     frutas.csprite[0].src = 'images/grapes.gif';
     function spawnFruit() {
-        var x = Math.floor((Math.random() * 400) + 400);
+        var x = Math.floor((Math.random() * 780) + 500);
         var y = Math.floor((Math.random() * 580) + 1);
         fruitOnScreen.posx = x;
         fruitOnScreen.posy = y;
@@ -80,9 +80,10 @@
     }
     function pegaFruta() {
         if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
-            spawnFruit();
+            player.pontos += frutas.pontos[fruitOnScreen.id];
+            spawnFruit();            
         }
-        if (fruitOnScreen.posx < 0) {
+        if (fruitOnScreen.posx < -32) {
             spawnFruit();
         }
     }
@@ -94,10 +95,7 @@
         ctx.drawImage(frutas.csprite[fruitOnScreen.id], fruitOnScreen.posx, fruitOnScreen.posy);
         ctx.drawImage(player.csprite, player.acrop, 0, player.largura, player.altura, player.posx, player.posy, 185.4, 126.6);
         pegaFruta();
-        //Batata
     }
-
-
 
     //Direções Movimentos
     function z_onKeyPress(keyid) {
