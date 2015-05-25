@@ -5,7 +5,7 @@
     <title>Blue Parrot Down</title>
 </head>
 <body onload='Init()' onkeydown='z_onKeyPress(window.event.keyCode)' style="background:#0099CC">
-    <canvas id="meuCanvas" width=800 height=600 style="border:1px solid black;background:#0099CC">
+    <canvas id="meuCanvas" width=1280 height=600 style="border:1px solid black;background:#0099CC">
         Seu navegador não suporta este recursoq
 
 
@@ -26,7 +26,7 @@
     player.csprite.src = 'images/bluebird.png';
     var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
     var bg = {
-        speed: 1,
+        speed: 2,
         altura: 600,
         largura: 2768,
         posx: 0,
@@ -77,20 +77,21 @@
         if (bg.posx < -2768) {
             bg.posx = 0;
         }
-        if (fruitOnScreen.posx > 0) {
-            fruitOnScreen.posx -= bg.speed;
-        }
+        fruitOnScreen.posx -= bg.speed;
     }
     function update() {
-        movimentoFixo();
-        if (player.posx > fruitOnScreen.posx && player.posx + player.largura < fruitOnScreen.posx + 32) {
-            spawnFruit();
-        }
+        movimentoFixo();       
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(bg.csprite, bg.posx, 0);
         ctx.drawImage(bg.csprite, bg.posx + 2768, 0);        
         ctx.drawImage(frutas.csprite[fruitOnScreen.id], fruitOnScreen.posx, fruitOnScreen.posy);
         ctx.drawImage(player.csprite, player.acrop, 0, player.largura, player.altura, player.posx, player.posy, 185.4, 126.6);
+        if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
+            spawnFruit();
+        }
+        if (fruitOnScreen.posx < 0) {
+            spawnFruit();
+        }
     }
 
 
