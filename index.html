@@ -16,8 +16,8 @@
     var player = {
         altura: 211,
         largura: 308,
-        posx: 30,
-        posy: 100,
+        posx: 0,
+        posy: 0,
         anstate: 0,
         acrop: 0,
         csprite: new Image(),
@@ -33,12 +33,22 @@
         csprite: new Image()
     };
     bg.csprite.src = 'images/forest.jpg';
-    var itemSprite = {
-        grapes: new Image()
-    }
-    itemSprite.grapes.src = 'images/grapes.gif';
-    var itemPontos = {
-        grapes: 2
+    var fruitOnScreen = {
+        id: 0,
+        posx: 0,
+        posy: 0
+    };
+    var frutas = {
+        'pontos': ['2', '3'],
+        'csprite': [new Image(), new Image()]
+    };
+    frutas.csprite[0].src = 'images/grapes.gif';
+    function spawnFruit() {
+        var x = Math.floor((Math.random() * 400) + 400);
+        var y = Math.floor((Math.random() * 580) + 1);
+        fruitOnScreen.posx = x;
+        fruitOnScreen.posy = y;
+
     }
     function Init() {
         propDir = 1;
@@ -47,6 +57,7 @@
         ctx = canvas.getContext("2d");
         setInterval(update, 33);
         setInterval(anim, 125);
+        spawnFruit();
         vertMov = 1;
         horiMov = 1;
     }
@@ -61,15 +72,25 @@
         }
     }
     //FrameUpdate
-    function update() {
+    function movimentoFixo() {
         bg.posx -= bg.speed;
         if (bg.posx < -2768) {
             bg.posx = 0;
         }
+        if (fruitOnScreen.posx > 0) {
+            fruitOnScreen.posx -= bg.speed;
+        }
+    }
+    function update() {
+        movimentoFixo();
+        if (player.posx > fruitOnScreen.posx && player.posx + player.largura < fruitOnScreen.posx + 32) {
+            spawnFruit();
+        }
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(bg.csprite, bg.posx, 0);
-        ctx.drawImage(bg.csprite, bg.posx + 2768, 0);
-        ctx.drawImage(player.csprite,player.acrop,0,player.largura,player.altura,player.posx,player.posy,185.4,126.6);
+        ctx.drawImage(bg.csprite, bg.posx + 2768, 0);        
+        ctx.drawImage(frutas.csprite[fruitOnScreen.id], fruitOnScreen.posx, fruitOnScreen.posy);
+        ctx.drawImage(player.csprite, player.acrop, 0, player.largura, player.altura, player.posx, player.posy, 185.4, 126.6);
     }
 
 
