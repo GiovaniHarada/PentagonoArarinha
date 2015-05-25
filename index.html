@@ -1,0 +1,127 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blue Parrot Down</title>
+</head>
+<body onload='Init()' onkeydown='z_onKeyPress(window.event.keyCode)' style="background:#0099CC">
+    <canvas id="meuCanvas" width=1280 height=600 style="border:1px solid black;background:#0099CC">
+        Seu navegador não suporta este recursoq
+
+
+    </canvas><br />
+</body>
+<script language="JavaScript">
+
+    var player = {
+        altura: 211,
+        largura: 308,
+        posx: 0,
+        posy: 0,
+        anstate: 0,
+        acrop: 0,
+        csprite: new Image(),
+        pontos: 0
+    };
+    player.csprite.src = 'images/bluebird.png';
+    var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
+    var bg = {
+        speed: 2,
+        altura: 600,
+        largura: 2768,
+        posx: 0,
+        csprite: new Image()
+    };
+    bg.csprite.src = 'images/forest.jpg';
+    var fruitOnScreen = {
+        id: 0,
+        posx: 0,
+        posy: 0
+    };
+    var frutas = {
+        'pontos': ['2', '3'],
+        'csprite': [new Image(), new Image()]
+    };
+    frutas.csprite[0].src = 'images/grapes.gif';
+    function spawnFruit() {
+        var x = Math.floor((Math.random() * 400) + 400);
+        var y = Math.floor((Math.random() * 580) + 1);
+        fruitOnScreen.posx = x;
+        fruitOnScreen.posy = y;
+
+    }
+    function Init() {
+        propDir = 1;
+        propSpe = 2;
+        canvas = document.getElementById("meuCanvas");
+        ctx = canvas.getContext("2d");
+        setInterval(update, 33);
+        setInterval(anim, 125);
+        spawnFruit();
+        vertMov = 1;
+        horiMov = 1;
+    }
+    //Animação Ararinha
+    function anim() {
+        if (player.anstate < 6) {
+            player.anstate += 1;
+            player.acrop = a_acrop[player.anstate];
+        } else {
+            player.anstate = 0;
+            player.acrop = a_acrop[player.anstate];
+        }
+    }
+    //FrameUpdate
+    function movimentoFixo() {
+        bg.posx -= bg.speed;
+        if (bg.posx < -2768) {
+            bg.posx = 0;
+        }
+        fruitOnScreen.posx -= bg.speed;
+    }
+    function update() {
+        movimentoFixo();       
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(bg.csprite, bg.posx, 0);
+        ctx.drawImage(bg.csprite, bg.posx + 2768, 0);        
+        ctx.drawImage(frutas.csprite[fruitOnScreen.id], fruitOnScreen.posx, fruitOnScreen.posy);
+        ctx.drawImage(player.csprite, player.acrop, 0, player.largura, player.altura, player.posx, player.posy, 185.4, 126.6);
+        if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
+            spawnFruit();
+        }
+        if (fruitOnScreen.posx < 0) {
+            spawnFruit();
+        }
+    }
+
+
+
+    //Direções Movimentos
+    function z_onKeyPress(keyid) {
+        //Cima
+        if (keyid == 87) {
+            if (player.posy > 0) {
+                player.posy = player.posy - 15;
+            }
+        }
+        //Baixo
+        if (keyid == 83) {
+            if (player.posy < 480) {
+                player.posy = player.posy + 15;
+            }
+        }
+        //Esquerda
+        if (keyid == 65 && horiMov == 1 || keyid == 37 && horiMov == 1) {
+            if (player.posx > 20) {
+                player.posx = player.posx - 10;
+            }
+        }
+        //Direita
+        if (keyid == 68 && horiMov == 1 || keyid == 39 && horiMov == 1) {
+            if (player.posx < 250) {
+                player.posx = player.posx + 10;
+            }
+        }
+    }
+</script>
+</html>
