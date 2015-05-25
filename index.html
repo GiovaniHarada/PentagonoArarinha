@@ -8,7 +8,7 @@
     <hr />
     <center><h1>Blue Parrot Down</h1></center>
     <hr />
-    <canvas id="meuCanvas" width=600 height=600 style="border:1px solid black;background:#0099CC">
+    <canvas id="meuCanvas" width=800 height=600 style="border:1px solid black;background:#0099CC">
         Seu navegador não suporta este recursoq
 
 
@@ -19,7 +19,7 @@
     var player = {
         altura: 211,
         largura: 308,
-        posx: 100,
+        posx: 30,
         posy: 100,
         anstate: 0,
         acrop: 0,
@@ -73,20 +73,28 @@
     //Direções Movimentos
     function z_onKeyPress(keyid) {
         //Cima
-        if (keyid == 87 && vertMov == 1 || keyid == 38 && vertMov == 1) {
-
+        if (keyid == 87) {
+            if (player.posy > 0) {
+                player.posy = player.posy - 15;
+            }
         }
         //Baixo
-        if (keyid == 83 && vertMov == 1 || keyid == 40 && vertMov == 1) {
-
+        if (keyid == 83) {
+            if (player.posy < 480) {
+                player.posy = player.posy + 15;
+            }
         }
         //Esquerda
         if (keyid == 65 && horiMov == 1 || keyid == 37 && horiMov == 1) {
-
+            if (player.posx > 20) {
+                player.posx = player.posx - 10;
+            }
         }
         //Direita
         if (keyid == 68 && horiMov == 1 || keyid == 39 && horiMov == 1) {
-
+            if (player.posx < 250) {
+                player.posx = player.posx + 10;
+            }
         }
     }
 </script>
