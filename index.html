@@ -91,7 +91,8 @@
     function pegaFruta() {
         if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
             player.pontos += frutas.pontos[fruitOnScreen.id];
-            spawnFruit();            
+            spawnFruit();
+            bg.speed += 0.2;
         }
         if (fruitOnScreen.posx < -32) {
             spawnFruit();
