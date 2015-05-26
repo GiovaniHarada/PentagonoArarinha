@@ -33,7 +33,7 @@
     player.csprite.src = 'images/bluebird.png';
     var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
     var bg = {
-        speed: 2,
+        speed: 1,
         altura: 600,
         largura: 2768,
         posx: 0,
@@ -67,7 +67,7 @@
         setTimeout(Init, 4000);
     }
     function Init() {    
-        setInterval(update, 33);
+        setInterval(update, 16,6);
         setInterval(anim, 125);
         spawnFruit();
         vertMov = 1;
@@ -96,12 +96,13 @@
         if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
             player.pontos += frutas.pontos[fruitOnScreen.id];
             spawnFruit();
-            bg.speed += 0.2;
+            bg.speed += 0.1;
         }
         if (fruitOnScreen.posx < -32) {
             spawnFruit();
         }
     }
+    //Executada +- 60 vezes por segundo
     function update() {
         movimentoFixo();       
         ctx.clearRect(0, 0, canvas.width, canvas.height);
