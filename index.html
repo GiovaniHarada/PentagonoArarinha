@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Blue Parrot Down</title>
 </head>
-<body onload='Init()' onkeydown='z_onKeyPress(window.event.keyCode)' style="background:#0099CC">
+<body onload='Intro()' onkeydown='z_onKeyPress(window.event.keyCode)' style="background:#0099CC">
     <canvas id="meuCanvas" width=1280 height=600 style="border:1px solid black;background:#0099CC">
         Seu navegador não suporta este recurso
 
@@ -49,26 +49,30 @@
         'pontos': ['2', '3'],
         'csprite': [new Image(), new Image()]
     };
+    var intro = new Image();
+    intro.src = 'images/intro.jpg'
     frutas.csprite[0].src = 'images/grapes.gif';
     function spawnFruit() {
         var x = Math.floor((Math.random() * 780) + 500);
         var y = Math.floor((Math.random() * 580) + 1);
         fruitOnScreen.posx = x;
         fruitOnScreen.posy = y;
-
     }
-    function Init() {
-        propDir = 1;
-        propSpe = 2;
+    function Intro() {
         canvas = document.getElementById("meuCanvas");
         ctx = canvas.getContext("2d");
+        var myAudio = document.getElementById("trilha");
+        myAudio.volume = 0.3;
+        ctx.drawImage(intro, 0, 0);
+        setTimeout(Init, 4000);
+    }
+    function Init() {    
         setInterval(update, 33);
         setInterval(anim, 125);
         spawnFruit();
         vertMov = 1;
         horiMov = 1;
-        var myAudio = document.getElementById("trilha");
-        myAudio.volume = 0.3;
+        
     }
     //Animação Ararinha
     function anim() {
