@@ -20,8 +20,9 @@
     </audio>
 </body>
 //Made by JegueBauer Giomarin e pvnll98
+    <br>
+    <div id="placar1"></div>
 <script language="JavaScript">
-    var ponto = 0;
     var player = {
         altura: 211,
         largura: 308,
@@ -76,6 +77,12 @@
         horiMov = 1;
         
     }
+    // Pontuação
+        placar1 = document.getElementById("placar1");
+        var ponto = 0;
+        placar1 = document.write("Pontuação: " + ponto);
+
+        
     //Animação Ararinha
     function anim() {
         if (player.anstate < 6) {
@@ -98,10 +105,10 @@
         if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
             player.pontos += frutas.pontos[fruitOnScreen.id];
             spawnFruit();
-            bg.speed += 0.1;
+            bg.speed += 0.1;            
+            ponto += 1;
+            document.getElementById("placar1").innerHTML = "Pontuação: " + ponto;
             
-                ponto += 1;
-                alert("Pontuação " + ponto);
                 
         }
         if (fruitOnScreen.posx < -32) {
