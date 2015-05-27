@@ -1,10 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Blue Parrot Down</title>
+    <link rel='stylesheet' type='text/css' href='css/style.css' />
 </head>
-<body onload='Intro()' onkeydown='z_onKeyPress(window.event.keyCode)' style="background:#0099CC">
+<body onload='Intro()' onkeydown='z_onKeyPress(window.event.keyCode)'>
     <canvas id="meuCanvas" width=1280 height=600 style="border:1px solid black;background:#0099CC">
         Seu navegador não suporta este recurso
 
@@ -21,7 +22,10 @@
 </body>
 //Made by JegueBauer Giomarin e pvnll98
     <br>
-    <div id="placar1"></div>
+<div id="placar">
+    Pontuação: <span id="valorplacar">0</span><br />
+    Vidas: <span id="valorvidas">3</span>
+</div>
 <script language="JavaScript">
     var player = {
         altura: 211,
@@ -31,7 +35,8 @@
         anstate: 0,
         acrop: 0,
         csprite: new Image(),
-        pontos: 0
+        pontos: 0,
+        vidas: 3
     };
     player.csprite.src = 'images/bluebird.png';
     var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
@@ -78,10 +83,8 @@
         
     }
     // Pontuação
-        placar1 = document.getElementById("placar1");
-        var ponto = 0;
-        placar1 = document.write("Pontuação: " + ponto);
-
+    valorplacar = document.getElementById("valorplacar");
+    valorvidas = document.getElementById("valorvidas");
         
     //Animação Ararinha
     function anim() {
@@ -103,16 +106,22 @@
     }
     function pegaFruta() {
         if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
-            player.pontos += frutas.pontos[fruitOnScreen.id];
+            player.pontos += parseInt(frutas.pontos[fruitOnScreen.id]);
             spawnFruit();
             bg.speed += 0.1;            
-            ponto += 1;
-            document.getElementById("placar1").innerHTML = "Pontuação: " + ponto;
-            
-                
+            document.getElementById("valorplacar").innerHTML = player.pontos;
         }
         if (fruitOnScreen.posx < -32) {
-            spawnFruit();
+            if (player.vidas <= 0) {
+                alert("Você perdeu!");
+                player.vidas = 3;
+                player.pontos = 0;
+                bg.speed = 1;                
+            } else {
+                player.vidas -= 1;
+                document.getElementById("valorvidas").innerHTML = player.vidas;
+                spawnFruit();
+            }                       
         }
     }
     //FPS = 60
