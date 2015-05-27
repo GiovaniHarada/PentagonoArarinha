@@ -21,6 +21,7 @@
 </body>
 //Made by JegueBauer Giomarin e pvnll98
 <script language="JavaScript">
+    var ponto = 0;
     var player = {
         altura: 211,
         largura: 308,
@@ -98,6 +99,10 @@
             player.pontos += frutas.pontos[fruitOnScreen.id];
             spawnFruit();
             bg.speed += 0.1;
+            
+                ponto += 1;
+                alert("Pontuação " + ponto);
+                
         }
         if (fruitOnScreen.posx < -32) {
             spawnFruit();
@@ -142,5 +147,6 @@
             }
         }
     }
+    
 </script>
 </html>
