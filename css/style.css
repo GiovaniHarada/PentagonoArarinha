@@ -1,6 +1,5 @@
-//Blue Ararainha ruby JegueBauer Pvnll98 & gitmao
 body{
-    background-color:#2ecc71;
+    background-color:#87D37C;
     font-family:Arial,Verdana,"Sans-serif";
 }
 canvas{
@@ -8,17 +7,11 @@ canvas{
 }
 #placar {
     width:1280px;
-    height:25px;
+    height:40px;
     background-color:#27ae60;
-    border-style:outset;
-    border-width:3px;
-    border-bottom-width:0px;
-    border-color:#006666;
+    vertical-align: middle;
+    line-height: 40px
 }
 #meuCanvas {
-    border-width:1px;
-    border-color:#006666;
-    background:#27ae60;
-    border-style:outset;
-    border-width:3px;
+
 }
