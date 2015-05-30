@@ -34,7 +34,7 @@
         vidas: 3,
         vSpeed: 0,
         hSpeed: 0,
-        maxSpeed: 10
+        maxSpeed: 5
     };
     player.csprite.src = 'images/bluebird.png';
     var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
@@ -157,7 +157,7 @@
                 if (player.vSpeed > 0) {
                     player.vSpeed = 0;
                 }
-                player.vSpeed -= 0.3;
+                player.vSpeed -= 0.4;
             }
         }
         //Baixo
@@ -166,7 +166,7 @@
                 if (player.vSpeed < 0) {
                     player.vSpeed = 0;
                 }
-                player.vSpeed += 0.3;
+                player.vSpeed += 0.6;
             }
         }
         //Esquerda
@@ -175,7 +175,7 @@
                 if (player.hSpeed > 0) {
                     player.hSpeed = 0;
                 }
-                player.hSpeed -= 0.3;
+                player.hSpeed -= 0.5;
             }
         }
         //Direita
@@ -184,7 +184,7 @@
                 if (player.hSpeed < 0) {
                     player.hSpeed = 0;
                 }
-                player.hSpeed += 0.3;
+                player.hSpeed += 0.5;
             }
         }
     }
