@@ -110,12 +110,13 @@
             document.getElementById("valorplacar").innerHTML = player.pontos;
         }
         if (fruitOnScreen.posx < -32) {
-            if (player.vidas <= 1) {
+            if (player.vidas <= 0) {
                 alert("Você perdeu!");
                 player.vidas = 3;
                 player.pontos = 0;
                 bg.speed = 1;
-                return 1;
+                document.getElementById("valorvidas").innerHTML = player.vidas;
+                spawnFruit();
             } else {
                 player.vidas -= 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
