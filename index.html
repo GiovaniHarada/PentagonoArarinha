@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--Blue Ararainha by JegueBauer Pvnll98 & gitmao-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,9 +12,9 @@
         Pontuação: <span id="valorplacar">0</span>&nbsp&nbsp&nbsp
         Vidas: <span id="valorvidas">3</span>
     </div>
-    <canvas id="meuCanvas" width=1280 height=600>
+    <canvas id="meuCanvas" width=900 height=600>
         Seu navegador não suporta este recurso
-    </canvas><br />
+    </canvas>
     <div id="histlivro">
     </div>
     <audio id='trilha' loop='loop' autoplay="autoplay">
@@ -37,7 +37,7 @@
         vSpeed: 0,
         hSpeed: 0,
         maxSpeed: 4,
-        livros: 1
+        livros: 0
     };
     player.csprite.src = 'images/bluebird.png';
     var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
@@ -70,18 +70,18 @@
     frutas.csprite[2].src = 'images/book.gif';
 
     function spawnFruit() {
-        var x = 1285;
+        var x = 905;
         var y = Math.floor((Math.random() * 580) + 1);
         fruitOnScreen.posx = x;
         fruitOnScreen.posy = y;
         var porc = Math.floor((Math.random() * 50) + 0);
-        if(porc >= 0 && porc <= 20 && player.livros == 1){
+        if(porc >= 0 && porc <= 20 && player.livros == 0){
             fruitOnScreen.id = 2;
         }
-        else if(porc >= 0 && porc <= 15 && player.livros == 2){
+        else if(porc >= 0 && porc <= 15 && player.livros == 1){
             fruitOnScreen.id = 2;
         }
-        else if (porc >= 0 && porc <= 10 && player.livros == 3) {
+        else if (porc >= 0 && porc <= 10 && player.livros == 2) {
             fruitOnScreen.id = 2;
         } else {
             var random = Math.floor((Math.random() * 2) + 1);
@@ -135,13 +135,13 @@
     function addBookPart() {
         switch (player.livros){
             case 1:
-                document.getElementById("histlivro").innerHTML = "<p>A  Arara azul está em extinção  porque ela  está sendo perseguida  pelos caçadores que vendem as araras  azuis e são empalhadas por colecionadores.</p><br />";
+                document.getElementById("histlivro").innerHTML = "<p><br />A  Arara azul está em extinção  porque ela  está sendo perseguida  pelos caçadores que vendem as araras  azuis e são empalhadas por colecionadores.</p><br />";
                 break;
             case 2:
-                document.getElementById("histlivro").innerHTML = "<p>As araras azuis alimementam-se, principalmente, de frutas, sementes, insetos e castanhas.</p><br />";
+                document.getElementById("histlivro").innerHTML = "<p><br />As araras azuis alimementam-se, principalmente, de frutas, sementes, insetos e castanhas.</p><br />";
                 break;
             case 3:
-                document.getElementById("histlivro").innerHTML = "<p>As araras azuis costumam habitar florestas em regiões tropicais do planeta. Aqui no Brasil, podemos encontrar espécies de araras no Pantanal, na Floresta Amazônica e na região da Mata Atlântica.</p><br />";
+                document.getElementById("histlivro").innerHTML = "<p><br />As araras azuis costumam habitar florestas em regiões tropicais do planeta. Aqui no Brasil, podemos encontrar espécies de araras no Pantanal, na Floresta Amazônica e na região da Mata Atlântica.</p><br />";
                 break;
             default:
                 
