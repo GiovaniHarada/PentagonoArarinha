@@ -6,7 +6,7 @@ canvas{
     float: left;
 }
 #placar {
-    width:1280px;
+    width:900px;
     height:40px;
     background-color:#27ae60;
     vertical-align: middle;
@@ -14,4 +14,12 @@ canvas{
 }
 #meuCanvas {
 
+}
+#histlivro{
+    background-image:url(/images/nbbg.jpg);
+    position: absolute;
+    left: 915px;
+    width:400px;
+    height:600px;
+    line-height: 160%;
 }
