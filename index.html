@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--Blue Ararainha by JegueBauer Pvnll98 & gitmao-->
 <!-- Ararinha azul em perigo-->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -84,7 +84,25 @@
         else if(porc >= 0 && porc <= 15 && player.livros == 1){
             fruitOnScreen.id = 2;
         }
-        else if (porc >= 0 && porc <= 10 && player.livros == 2) {
+        else if (porc >= 0 && porc <= 10 && player.livros == 3) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 4) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 5) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 6) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 7) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 8) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 9) {
             fruitOnScreen.id = 2;
         } else {
             var random = Math.floor((Math.random() * 2) + 1);
@@ -147,6 +165,27 @@
             case 3:
                 document.getElementById("histlivro").innerHTML = "<p><br />As araras azuis costumam habitar florestas em regiões tropicais do planeta. Aqui no Brasil, podemos encontrar espécies de araras no Pantanal, na Floresta Amazônica e na região da Mata Atlântica.</p><br />";
                 break;
+            case 4:
+                document.getElementById("histlivro").innerHTML = "<p><br />A Arara azul mede cerca de 98 centímetros de comprimento e pesa 1,5 quilo. Coloração inconfundível, principalmente azul intensa, com diferentes tonalidades. Base do bico e anel ocular nus e de cor amarela, partes internas das asas e cauda negras.</p><br />";
+                break;
+            case 5:
+                document.getElementById("histlivro").innerHTML = "<p><br />Gigante entre as araras, a arara-azul-grande é considerada o maior representante da família em todo o mundo.</p><br />";
+                break;
+            case 6:
+                document.getElementById("histlivro").innerHTML = "<p><br />Embora as araras seja reconhecidas como pássaros barulhentos, a verdade é que parece que essa característica não chegou à arara azul. Na verdade, elas conversam de manhã e à noite, normalmente, porque na natureza, esta conversa é geralmente uma maneira de determinar onde está cada um do grupo familiar.</p><br />";
+                break;
+            case 7:
+                document.getElementById("histlivro").innerHTML = "<p><br />O Arara Azul é um pássaro espectacular amado em todo o mundo pela sua beleza e sua personalidade.</p><br />";
+                break;
+            case 8:
+                document.getElementById("histlivro").innerHTML = "<p><br />A Arara azul faz parte do Reino: Animalia, Filo: Chordata, Classe: Aves, Ordem: Psitaciformes, Família: Psittacidae </p><br />";
+                break;
+            case 9:
+                document.getElementById("histlivro").innerHTML = "<p><br />As araras azuis são da mesma família dos papagaios, porém conseguem aprender poucas palavras.</p><br />";
+                break;
+            case 10:
+                document.getElementById("histlivro").innerHTML = "<p><br /></p>Na natureza, as araras-azuis podem ser observadas voando ou com mais facilidade andando pelo chão, penduradas nos cachos de frutos das palmeiras ou pousadas em galhos secos das árvores ou ainda nos mourões de cercas e mangueiros.<br />";
+                break;
             default:
                 
                 break;
@@ -158,9 +197,8 @@
             if (fruitOnScreen.id == 2) {
                 player.livros++;
                 addBookPart();
-                if (player.livros == 3) {
+                if (player.livros == 10) {
                     player.pontos += 50;
-                }
             }
             spawnFruit();
             bg.speed += 0.1;            
@@ -174,17 +212,46 @@
                 bg.speed = 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
                 var porc = Math.floor((Math.random() * 100) + 0);                
-                if(porc >= 0 && porc <= 20 && player.livros == 1){
+                if(porc >= 0 && porc <= 30 && player.livros == 1){
                     player.livros++;
                     spawnBook();
                 }
-                else if(porc >= 0 && porc <= 15 && player.livros == 2){
+                else if(porc >= 0 && porc <= 25 && player.livros == 2){
                     player.livros++;
                     spawnBook();
                 }
-                else if(porc >= 0 && porc <= 10 && player.livros == 3){ 
+                else if(porc >= 0 && porc <= 22 && player.livros == 3){ 
                     player.livros++;
-                    spawnBook();                 
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 20 && player.livros == 4){ 
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 17 && player.livros == 5){ 
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 15 && player.livros == 6){ 
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 13 && player.livros == 7){ 
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 12 && player.livros == 8){ 
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 11 && player.livros == 9){ 
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 10 && player.livros == 10){ 
+                    player.livros++;
+                    spawnBook();
+                }
                 }else{
                     spawnFruit();
                 }
@@ -199,7 +266,7 @@
     function pegaLivro() {
         if (player.posx < bookOnScreen.posx && player.posx + 185 > bookOnScreen.posx + 32 && player.posy < bookOnScreen.posy && player.posy + 126 > bookOnScreen.posy + 32) {                        
             document.getElementById("histlivro");
-            if(player.livros > 3){                     
+            if(player.livros > 10){                     
                 alert("Parabéns você completou a historia ganhou 130 pontos!");
                 player.pontos += 130;
             }
