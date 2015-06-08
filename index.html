@@ -63,6 +63,8 @@
         'pontos': ['2', '3','0'],
         'csprite': [new Image(), new Image(), new Image()]
     };
+    var regras = new Image();
+    regras.src = 'images/regras.jpg'
     var intro = new Image();
     intro.src = 'images/intro.jpg'
     frutas.csprite[0].src = 'images/grapes.gif';
@@ -100,7 +102,8 @@
         var myAudio = document.getElementById("trilha");
         myAudio.volume = 0.3;
         ctx.drawImage(intro, 0, 0);
-        setTimeout(Init, 4000);
+		setTimeout(function(){ ctx.drawImage(regras, 0, 0); }, 3000);		
+        setTimeout(Init, 16000);
     }
     function Init() {    
         setInterval(update, 16,6);
@@ -169,8 +172,7 @@
                 player.pontos = 0;
                 bg.speed = 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
-                var porc = Math.floor((Math.random() * 100) + 0);
-                alert(porc);
+                var porc = Math.floor((Math.random() * 100) + 0);                
                 if(porc >= 0 && porc <= 20 && player.livros == 1){
                     player.livros++;
                     spawnBook();
@@ -185,6 +187,7 @@
                 }else{
                     spawnFruit();
                 }
+				location.reload(forceGet);
             } else {
                 player.vidas -= 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
