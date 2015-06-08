@@ -61,7 +61,7 @@
         posy: 0
     };
     var frutas = {
-        'pontos': ['2', '3','0'],
+        'pontos': ['2', '3','50'],
         'csprite': [new Image(), new Image(), new Image()]
     };
     var regras = new Image();
@@ -86,6 +86,24 @@
         }
         else if (porc >= 0 && porc <= 10 && player.livros == 2) {
             fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 3) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 4) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 5) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 6) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 7) {
+            fruitOnScreen.id = 2;
+        }
+        else if (porc >= 0 && porc <= 10 && player.livros == 8) {
+            fruitOnScreen.id = 2;
         } else {
             var random = Math.floor((Math.random() * 2) + 1);
             if (random == 1) {
@@ -103,21 +121,21 @@
         var myAudio = document.getElementById("trilha");
         myAudio.volume = 0.3;
         ctx.drawImage(intro, 0, 0);
-		setTimeout(function(){ ctx.drawImage(regras, 0, 0); }, 3000);		
+		setTimeout(function(){ ctx.drawImage(regras, 0, 0); }, 3000);
         setTimeout(Init, 16000);
     }
-    function Init() {    
+    function Init() {
         setInterval(update, 16,6);
         setInterval(anim, 125);
-        spawnFruit();       
+        spawnFruit();
         vertMov = 1;
-        horiMov = 1;        
+        horiMov = 1;
     }
     // Pontuação
     valorplacar = document.getElementById("valorplacar");
     valorvidas = document.getElementById("valorvidas");
     histlivro = document.getElementById("histlivro");
-        
+
     //Animação Ararinha
     function anim() {
         if (player.anstate < 6) {
@@ -147,25 +165,49 @@
             case 3:
                 document.getElementById("histlivro").innerHTML = "<p><br />As araras azuis costumam habitar florestas em regiões tropicais do planeta. Aqui no Brasil, podemos encontrar espécies de araras no Pantanal, na Floresta Amazônica e na região da Mata Atlântica.</p><br />";
                 break;
+            case 4:
+                document.getElementById("histlivro").innerHTML = "<p><br />A Arara azul mede cerca de 98 centímetros de comprimento e pesa 1,5 quilo. Coloração inconfundível, principalmente azul intensa, com diferentes tonalidades. Base do bico e anel ocular nus e de cor amarela, partes internas das asas e cauda negras.</p><br />";
+                break;
+            case 5:
+                document.getElementById("histlivro").innerHTML = "<p><br />Gigante entre as araras, a arara-azul-grande é considerada o maior representante da família em todo o mundo.</p><br />";
+                break;
+            case 6:
+                document.getElementById("histlivro").innerHTML = "<p><br />Embora as araras seja reconhecidas como pássaros barulhentos, a verdade é que parece que essa característica não chegou à arara azul. Na verdade, elas conversam de manhã e à noite, normalmente, porque na natureza, esta conversa é geralmente uma maneira de determinar onde está cada um do grupo familiar.</p><br />";
+                break;
+            case 7:
+                document.getElementById("histlivro").innerHTML = "<p><br />O Arara Azul é um pássaro espectacular amado em todo o mundo pela sua beleza e sua personalidade.</p><br />";
+                break;
+            case 8:
+                document.getElementById("histlivro").innerHTML = "<p><br />A Arara azul faz parte do Reino: Animalia, Filo: Chordata, Classe: Aves, Ordem: Psitaciformes, Família: Psittacidae </p><br />";
+                break;
+            case 9:
+                document.getElementById("histlivro").innerHTML = "<p><br />As araras azuis são da mesma família dos papagaios, porém conseguem aprender poucas palavras.</p><br />";
+                break;
+            case 10:
+                document.getElementById("histlivro").innerHTML = "<p><br /></p>Na natureza, as araras-azuis podem ser observadas voando ou com mais facilidade andando pelo chão, penduradas nos cachos de frutos das palmeiras ou pousadas em galhos secos das árvores ou ainda nos mourões de cercas e mangueiros.<br />";
+                break;
             default:
-                
+
                 break;
         }
     }
     function pegaFruta() {
         if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
-            player.pontos += parseInt(frutas.pontos[fruitOnScreen.id]);
             if (fruitOnScreen.id == 2) {
                 player.livros++;
                 addBookPart();
-                if (player.livros == 3) {
-                    player.pontos += 50;
-                }
+                if (player.livros == 9) {
+                    player.pontos += 150;
+				}
+				spawnFruit();
+				bg.speed += 0.1;
+				document.getElementById("valorplacar").innerHTML = player.pontos;
+            } else {
+                player.pontos += parseInt(frutas.pontos[fruitOnScreen.id]);
+                spawnFruit();
+                document.getElementById("valorplacar").innerHTML = player.pontos;
             }
-            spawnFruit();
-            bg.speed += 0.1;            
-            document.getElementById("valorplacar").innerHTML = player.pontos;
-        }
+		}
         if (fruitOnScreen.posx < -32) {
             if (player.vidas <= 0) {
                 alert("Você perdeu!");
@@ -173,37 +215,13 @@
                 player.pontos = 0;
                 bg.speed = 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
-                var porc = Math.floor((Math.random() * 100) + 0);                
-                if(porc >= 0 && porc <= 20 && player.livros == 1){
-                    player.livros++;
-                    spawnBook();
-                }
-                else if(porc >= 0 && porc <= 15 && player.livros == 2){
-                    player.livros++;
-                    spawnBook();
-                }
-                else if(porc >= 0 && porc <= 10 && player.livros == 3){ 
-                    player.livros++;
-                    spawnBook();                 
-                }else{
-                    spawnFruit();
-                }
-				location.reload(forceGet);
+                document.getElementById("valorplacar").innerHTML = player.pontos;
+                spawnFruit();
             } else {
                 player.vidas -= 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
                 spawnFruit();
-            }                       
-        }
-    }
-    function pegaLivro() {
-        if (player.posx < bookOnScreen.posx && player.posx + 185 > bookOnScreen.posx + 32 && player.posy < bookOnScreen.posy && player.posy + 126 > bookOnScreen.posy + 32) {                        
-            document.getElementById("histlivro");
-            if(player.livros > 3){                     
-                alert("Parabéns você completou a historia ganhou 130 pontos!");
-                player.pontos += 130;
             }
-            spawnFruit();
         }
     }
     function playerMove() {
@@ -226,14 +244,13 @@
     //Executada +- 60 vezes por segundo
     function update() {
         playerMove();
-        movimentoFixo();       
+        movimentoFixo();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(bg.csprite, bg.posx, 0);
-        ctx.drawImage(bg.csprite, bg.posx + 2768, 0);        
+        ctx.drawImage(bg.csprite, bg.posx + 2768, 0);
         ctx.drawImage(frutas.csprite[fruitOnScreen.id], fruitOnScreen.posx, fruitOnScreen.posy);
         ctx.drawImage(player.csprite, player.acrop, 0, player.largura, player.altura, player.posx, player.posy, 185.4, 126.6);
         pegaFruta();
-        pegaLivro();
     }
 
     //Direções Movimentos
@@ -275,5 +292,5 @@
             }
         }
     }
-    
+
 </script>
