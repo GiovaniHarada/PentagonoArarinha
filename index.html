@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--Blue Ararainha by JegueBauer Pvnll98 & gitmao-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -135,16 +135,16 @@
     function addBookPart() {
         switch (player.livros){
             case 1:
-                alert("Ararinha azul gosta de voar feliz na floresta amazoniaca!");
+                document.getElementById("histlivros").innerHTML = "<p>A  Arara azul está em extinção  porque ela  está sendo perseguida  pelos caçadores que vendem as araras  azuis e são empalhadas por colecionadores.</p><br />";
                 break;
             case 2:
-                alert("A Ararinha blue gosta de comer sementes das arvores que somos nozes");
+                document.getElementById("histlivros").innerHTML = "<p>As araras azuis alimementam-se, principalmente, de frutas, sementes, insetos e castanhas.</p><br />";
                 break;
             case 3:
-                alert("A Ararinha azul nao gosta de morrer :( ela gosta de avuar feliz ! :)");
+                document.getElementById("histlivros").innerHTML = "<p>As araras azuis costumam habitar florestas em regiões tropicais do planeta. Aqui no Brasil, podemos encontrar espécies de araras no Pantanal, na Floresta Amazônica e na região da Mata Atlântica.</p><br />";
                 break;
             default:
-                alert("A Ararinha azul e azul");
+                
                 break;
         }
     }
