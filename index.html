@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--Blue Ararainha by JegueBauer Pvnll98 & gitmao-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,6 +15,8 @@
     <canvas id="meuCanvas" width=1280 height=600>
         Seu navegador não suporta este recurso
     </canvas><br />
+    <div id="histlivro">
+    </div>
     <audio id='trilha' loop='loop' autoplay="autoplay">
         <source src="sound/the_high_desert.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
@@ -34,7 +36,8 @@
         vidas: 3,
         vSpeed: 0,
         hSpeed: 0,
-        maxSpeed: 4
+        maxSpeed: 4,
+        livros: 1
     };
     player.csprite.src = 'images/bluebird.png';
     var a_acrop = [0, 309, 618, 927, 1236, 1545, 1854];
@@ -51,18 +54,34 @@
         posx: 0,
         posy: 0
     };
+    var bookOnScreen = {
+        id: 0,
+        posx: 0,
+        posy: 0
+    };
     var frutas = {
-        'pontos': ['2', '3'],
-        'csprite': [new Image(), new Image()]
+        'pontos': ['2', '3','0'],
+        'csprite': [new Image(), new Image(), new Image()]
     };
     var intro = new Image();
     intro.src = 'images/intro.jpg'
     frutas.csprite[0].src = 'images/grapes.gif';
+    frutas.csprite[2].src = 'images/book.gif';
     function spawnFruit() {
         var x = 1285;
         var y = Math.floor((Math.random() * 580) + 1);
         fruitOnScreen.posx = x;
         fruitOnScreen.posy = y;
+        var porc = Math.floor((Math.random() * 100) + 0);
+        if(porc >= 0 && porc <= 20 && player.livros == 1){
+            
+        }
+        else if(porc >= 0 && porc <= 15 && player.livros == 2){
+            
+        }
+        else if(porc >= 0 && porc <= 10 && player.livros == 3){ 
+                        
+        }
     }
     function Intro() {
         canvas = document.getElementById("meuCanvas");
@@ -75,14 +94,14 @@
     function Init() {    
         setInterval(update, 16,6);
         setInterval(anim, 125);
-        spawnFruit();
+        spawnFruit();       
         vertMov = 1;
-        horiMov = 1;
-        
+        horiMov = 1;        
     }
     // Pontuação
     valorplacar = document.getElementById("valorplacar");
     valorvidas = document.getElementById("valorvidas");
+    histlivro = document.getElementById("histlivro");
         
     //Animação Ararinha
     function anim() {
@@ -116,12 +135,37 @@
                 player.pontos = 0;
                 bg.speed = 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
-                spawnFruit();
+                var porc = Math.floor((Math.random() * 100) + 0);
+                alert(porc);
+                if(porc >= 0 && porc <= 20 && player.livros == 1){
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 15 && player.livros == 2){
+                    player.livros++;
+                    spawnBook();
+                }
+                else if(porc >= 0 && porc <= 10 && player.livros == 3){ 
+                    player.livros++;
+                    spawnBook();                 
+                }else{
+                    spawnFruit();
+                }
             } else {
                 player.vidas -= 1;
                 document.getElementById("valorvidas").innerHTML = player.vidas;
                 spawnFruit();
             }                       
+        }
+    }
+    function pegaLivro() {
+        if (player.posx < bookOnScreen.posx && player.posx + 185 > bookOnScreen.posx + 32 && player.posy < bookOnScreen.posy && player.posy + 126 > bookOnScreen.posy + 32) {                        
+            document.getElementById("histlivro");
+            if(player.livros > 3){                     
+                alert("Parabéns você completou a historia ganhou 130 pontos!");
+                player.pontos += 130;
+            }
+            spawnFruit();
         }
     }
     function playerMove() {
@@ -151,6 +195,7 @@
         ctx.drawImage(frutas.csprite[fruitOnScreen.id], fruitOnScreen.posx, fruitOnScreen.posy);
         ctx.drawImage(player.csprite, player.acrop, 0, player.largura, player.altura, player.posx, player.posy, 185.4, 126.6);
         pegaFruta();
+        pegaLivro();
     }
 
     //Direções Movimentos
