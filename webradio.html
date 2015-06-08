@@ -1,0 +1,24 @@
+<div style="width:601px;height:59px;background-image: url(http://slsolucoes.com/adicional/64k.png);">
+    <audio id='wradio' autoplay="autoplay">
+        <source src="http://stm47.srvstm.com:19596/;&type=mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+    <script language="JavaScript">
+	function trilha_playPause() {
+		var myAudio = document.getElementById("trilha");
+		if (myAudio.paused) {
+			myAudio.play();
+		}else{
+			myAudio.pause();
+		}
+	};
+	function trilha_aumentaSom() {
+		var myAudio = document.getElementById("trilha");
+		myAudio.volume += 0.1;
+	};
+	function trilha_diminuiSom() {
+		var myAudio = document.getElementById("trilha");
+		myAudio.volume -= 0.2;
+	};
+    </script>
+</div>

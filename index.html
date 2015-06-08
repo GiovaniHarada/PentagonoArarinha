@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--Blue Ararainha ruby JegueBauer Pvnll98 & gitmao-->
+<!--Blue Ararainha by JegueBauer Pvnll98 & gitmao-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,7 +59,7 @@
     intro.src = 'images/intro.jpg'
     frutas.csprite[0].src = 'images/grapes.gif';
     function spawnFruit() {
-        var x = Math.floor((Math.random() * 780) + 500);
+        var x = 1285;
         var y = Math.floor((Math.random() * 580) + 1);
         fruitOnScreen.posx = x;
         fruitOnScreen.posy = y;
@@ -137,6 +137,8 @@
         if (player.vSpeed < 0 && player.posy > -10) {
             player.posy += player.vSpeed;
         }
+        player.hSpeed *= 0.98;
+        player.vSpeed *= 0.98;
     }
     //FPS = 60
     //Executada +- 60 vezes por segundo
