@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--Blue Ararainha by JegueBauer Pvnll98 & gitmao-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -66,23 +66,34 @@
     var intro = new Image();
     intro.src = 'images/intro.jpg'
     frutas.csprite[0].src = 'images/grapes.gif';
+    frutas.csprite[1].src = 'images/pera.gif';
     frutas.csprite[2].src = 'images/book.gif';
+
     function spawnFruit() {
         var x = 1285;
         var y = Math.floor((Math.random() * 580) + 1);
         fruitOnScreen.posx = x;
         fruitOnScreen.posy = y;
-        var porc = Math.floor((Math.random() * 100) + 0);
+        var porc = Math.floor((Math.random() * 50) + 0);
         if(porc >= 0 && porc <= 20 && player.livros == 1){
-            
+            fruitOnScreen.id = 2;
         }
         else if(porc >= 0 && porc <= 15 && player.livros == 2){
-            
+            fruitOnScreen.id = 2;
         }
-        else if(porc >= 0 && porc <= 10 && player.livros == 3){ 
-                        
+        else if (porc >= 0 && porc <= 10 && player.livros == 3) {
+            fruitOnScreen.id = 2;
+        } else {
+            var random = Math.floor((Math.random() * 2) + 1);
+            if (random == 1) {
+                fruitOnScreen.id = 0;
+            } else {
+                fruitOnScreen.id = 1;
+            }
+
         }
     }
+
     function Intro() {
         canvas = document.getElementById("meuCanvas");
         ctx = canvas.getContext("2d");
@@ -121,9 +132,32 @@
         }
         fruitOnScreen.posx -= bg.speed;
     }
+    function addBookPart() {
+        switch (player.livros){
+            case 1:
+                alert("Ararinha azul gosta de voar feliz na floresta amazoniaca!");
+                break;
+            case 2:
+                alert("A Ararinha blue gosta de comer sementes das arvores que somos nozes");
+                break;
+            case 3:
+                alert("A Ararinha azul nao gosta de morrer :( ela gosta de avuar feliz ! :)");
+                break;
+            default:
+                alert("A Ararinha azul e azul");
+                break;
+        }
+    }
     function pegaFruta() {
         if (player.posx < fruitOnScreen.posx && player.posx + 185 > fruitOnScreen.posx + 32 && player.posy < fruitOnScreen.posy && player.posy + 126 > fruitOnScreen.posy + 32) {
             player.pontos += parseInt(frutas.pontos[fruitOnScreen.id]);
+            if (fruitOnScreen.id == 2) {
+                player.livros++;
+                addBookPart();
+                if (player.livros == 3) {
+                    player.pontos += 50;
+                }
+            }
             spawnFruit();
             bg.speed += 0.1;            
             document.getElementById("valorplacar").innerHTML = player.pontos;
