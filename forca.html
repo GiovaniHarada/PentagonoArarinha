@@ -37,6 +37,7 @@
         document.getElementById("palavra").innerHTML = aux;
         ctx.drawImage(sprites[6], 0, 0);
         player.pid++;
+        player.vidas = 6;
     }
     var acertou = 0;
     function verificaLetra(letra) {
@@ -49,19 +50,26 @@
             o = i+1;
             psplit[i] = player.pdavez.substring(i, o);
 
-            if (psplit[i] == letra) {
+            if (psplit[i] == letra && player.vidas > 0) {
                 console.log(letra);
                 player.patual[i] = letra;
                 var aux = player.patual.toString();
                 aux = aux.replace(/,/g, "");
                 document.getElementById("palavra").innerHTML = aux;
                 acertou = 1;
+            } else {
+                alert("Você não tem mais vidas !");
             }
         }
         if (acertou == 0) {
-            player.vidas -= 1;
-            console.log("errou");
-            console.log(player.vidas);
+            if (player.vidas > 0) {
+                player.vidas -= 1;
+                console.log("errou");
+                console.log(player.vidas);
+            } else {
+                alert("Você não tem mais vidas !");
+            }
+            
         }
     }
     var sprites = new Array();
