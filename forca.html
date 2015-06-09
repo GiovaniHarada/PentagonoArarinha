@@ -8,6 +8,7 @@
 </head>
 <script language="JavaScript">
     var player = {
+        vidas: 6,
         pontos: 0,
         completas: 0,
         patual: new Array(),
@@ -34,9 +35,12 @@
         var aux = player.patual.toString();
         aux = aux.replace(/,/g, "");
         document.getElementById("palavra").innerHTML = aux;
+        ctx.drawImage(sprites[6], 0, 0);
+        player.pid++;
     }
-
+    var acertou = 0;
     function verificaLetra(letra) {
+        acertou = 0;
         document.getElementById('fletra').value = "";
         var psplit = new Array();
         var pcount = player.pdavez.length;
@@ -51,20 +55,49 @@
                 var aux = player.patual.toString();
                 aux = aux.replace(/,/g, "");
                 document.getElementById("palavra").innerHTML = aux;
-            } else if (psplit[i] != letra && psplit[i] == "") {
-                player.patual[i] = "-";
-                var aux = player.patual.toString();
-                aux = aux.replace(/,/g, "");
-                document.getElementById("palavra").innerHTML = aux;
+                acertou = 1;
             }
         }
+        if (acertou == 0) {
+            player.vidas -= 1;
+            console.log("errou");
+            console.log(player.vidas);
+        }
+    }
+    var sprites = new Array();
+    sprites[0] = new Image();
+    sprites[1] = new Image();
+    sprites[2] = new Image();
+    sprites[3] = new Image();
+    sprites[4] = new Image();
+    sprites[5] = new Image();
+    sprites[6] = new Image();
+    sprites[0].src = 'images/boneco/1.gif';
+    sprites[1].src = 'images/boneco/2.gif';
+    sprites[2].src = 'images/boneco/3.gif';
+    sprites[3].src = 'images/boneco/4.gif';
+    sprites[4].src = 'images/boneco/5.gif';
+    sprites[5].src = 'images/boneco/6.gif';
+    sprites[6].src = 'images/boneco/7.gif';
+
+    function Init() {
+        canvas = document.getElementById("meuCanvas");
+        ctx = canvas.getContext("2d");
+        setInterval(anim, 125);
+    }
+    function anim() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(sprites[player.vidas], 0, 0);
     }
 </script>
-<body>
+<body onload='Init()'>
     <div id="painel">
         <div id="quest" style=""></div>
         <div id="palavra"></div>
     </div>
+    <canvas id="meuCanvas" width=200 height=350>
+        Seu navegador não suporta este recurso
+    </canvas>
     <br />
     <br />
     <div id="control">        
