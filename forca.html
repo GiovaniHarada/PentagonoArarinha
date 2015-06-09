@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Jogo da Forca</title>
+    <link rel='stylesheet' type='text/css' href='css/style2.css' />
+</head>
+<script language="JavaScript">
+    var player = {
+        pontos: 0,
+        completas: 0,
+        patual: new Array(),
+        pdavez: "",
+        pid: 0
+    };
+    var palavras = new Array();
+    palavras[0] = "teste";
+
+    var quests = {
+        'quest': ['Qual o habitat do Tubarão Branco ?', 'Tubarões Branco são ....', 'Quais são seus habitos alimentares ?', 'Em que posição o Tubarão Branco se encontra na cadeia alimentar ?', 'Um Tubarão tem em média quantos metros ?', 'Quanto a reprodução, eles são ...', 'O maior tubarão branco já encontrada era uma fêmea e tinha quantos metros ?', 'Qual o reino do Tubarão Branco ?', 'Qual o filo do Tubarão Branco ?'],
+        'palavra': ['COSTASMARITIMAS', 'CARNIVOROS', 'PEIXES', 'CONSUMIDOR', 'CINCO', 'OVIPAROS', 'ONZE', 'ANIMALIA', 'CHORDATA']
+    };
+
+    function novaPalavra() {
+        document.getElementById("quest").innerHTML = quests.quest[player.pid];
+        player.patual = [];
+        player.pdavez = quests.palavra[player.pid];
+        console.log(player.pdavez);
+        var aux = player.pdavez.length;
+        for (i = 0; i < aux; i++) {
+            player.patual[i] = "-";
+        }
+        var aux = player.patual.toString();
+        aux = aux.replace(/,/g, "");
+        document.getElementById("palavra").innerHTML = aux;
+    }
+
+    function verificaLetra(letra) {
+        document.getElementById('fletra').value = "";
+        var psplit = new Array();
+        var pcount = player.pdavez.length;
+        var o;
+        for (i = 0; i < pcount; i++) {
+            o = i+1;
+            psplit[i] = player.pdavez.substring(i, o);
+
+            if (psplit[i] == letra) {
+                console.log(letra);
+                player.patual[i] = letra;
+                var aux = player.patual.toString();
+                aux = aux.replace(/,/g, "");
+                document.getElementById("palavra").innerHTML = aux;
+            } else if (psplit[i] != letra && psplit[i] == "") {
+                player.patual[i] = "-";
+                var aux = player.patual.toString();
+                aux = aux.replace(/,/g, "");
+                document.getElementById("palavra").innerHTML = aux;
+            }
+        }
+    }
+</script>
+<body>
+    <div id="painel">
+        <div id="quest" style=""></div>
+        <div id="palavra"></div>
+    </div>
+    <br />
+    <br />
+    <div id="control">        
+        <form>
+            <input id="fletra" type="text" size="8" maxlength="1" />
+            <input type="button" id="testarLetra" value="TESTAR LETRA" onclick="verificaLetra(document.getElementById('fletra').value.toUpperCase());" />
+            <input type="button" id="newPalavra" value="Nova Palavra" onclick="novaPalavra();" />
+        </form>
+    </div>
+</body>
+</html>
