@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -41,6 +41,10 @@
     }
     var acertou = 0;
     function verificaLetra(letra) {
+        if (player.vidas <= 0) {
+            alert("Você não tem mais vidas ! Aperte F5 para recomeçar.")
+            return;
+        }
         acertou = 0;
         document.getElementById('fletra').value = "";
         var psplit = new Array();
@@ -49,25 +53,21 @@
         for (i = 0; i < pcount; i++) {
             o = i+1;
             psplit[i] = player.pdavez.substring(i, o);
-
-            if (psplit[i] == letra && player.vidas > 0) {
+            if (psplit[i] == letra) {
                 console.log(letra);
                 player.patual[i] = letra;
                 var aux = player.patual.toString();
                 aux = aux.replace(/,/g, "");
                 document.getElementById("palavra").innerHTML = aux;
                 acertou = 1;
-            } else {
-                alert("Você não tem mais vidas !");
             }
+            
         }
         if (acertou == 0) {
             if (player.vidas > 0) {
                 player.vidas -= 1;
                 console.log("errou");
                 console.log(player.vidas);
-            } else {
-                alert("Você não tem mais vidas !");
             }
             
         }
@@ -99,7 +99,10 @@
     }
 </script>
 <body onload='Init()'>
-    <p id="howto">Para começar a jogar, clique no botao "Nova Palavra", digite uma letra no campo, e depois clique em "TESTAR LETRA",<br /> para desistir da palavra ou avançar para a proxima, clique novamente em "Nova Palavra"</p>
+    <div id="howto"> 
+        <p>Voçê foi tentar salvar um Tubarão Branco das mãos dos caçadores, acabou sendo capturado, eles te deram uma chance, apenas sairia com vida e salvaria o tubarão se respondesse corretamente as seguintes perguntas a respeito do Tubarão Branco:</p>
+        <p>Para começar a jogar, clique no botao "Nova Palavra", digite uma letra no campo, e depois clique em "TESTAR LETRA",<br /> para desistir da palavra ou avançar para a proxima, clique novamente em "Nova Palavra"</p>
+    </div>
     <div id="painel">
         <div id="quest" style=""></div>
         <div id="palavra"></div>
