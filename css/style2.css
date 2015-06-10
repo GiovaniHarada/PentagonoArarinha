@@ -1,4 +1,4 @@
-﻿body{
+body{
     background-color:#a1a1a1;
     font-family:Arial,Verdana,"Sans-serif";
 }
@@ -15,4 +15,8 @@
 }
 #quest{
     font-size:12px;
+}
+#howto{
+    font-size:15px;
+    font-family:Arial,Verdana,"Sans-serif";
 }

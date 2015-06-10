@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,8 +19,8 @@
     palavras[0] = "teste";
 
     var quests = {
-        'quest': ['Qual o habitat do Tubarão Branco ?', 'Tubarões Branco são ....', 'Quais são seus habitos alimentares ?', 'Em que posição o Tubarão Branco se encontra na cadeia alimentar ?', 'Um Tubarão tem em média quantos metros ?', 'Quanto a reprodução, eles são ...', 'O maior tubarão branco já encontrada era uma fêmea e tinha quantos metros ?', 'Qual o reino do Tubarão Branco ?', 'Qual o filo do Tubarão Branco ?'],
-        'palavra': ['COSTASMARITIMAS', 'CARNIVOROS', 'PEIXES', 'CONSUMIDOR', 'CINCO', 'OVIPAROS', 'ONZE', 'ANIMALIA', 'CHORDATA']
+        'quest': ['Qual o habitat do Tubarão Branco ?', 'Tubarões Branco são ....', 'Quais são seus habitos alimentares ?', 'Em que posição o Tubarão Branco se encontra na cadeia alimentar ?', 'Um Tubarão tem em média quantos metros ?', 'Quanto a reprodução, eles são ...', 'O maior tubarão branco já encontrada era uma fêmea e tinha quantos metros ?', 'Qual o reino do Tubarão Branco ?', 'Qual o filo do Tubarão Branco ?','FIM DE JOGO !'],
+        'palavra': ['COSTASMARITIMAS', 'CARNIVOROS', 'PEIXES', 'CONSUMIDOR', 'CINCO', 'OVIPAROS', 'ONZE', 'ANIMALIA', 'CHORDATA','FIM']
     };
 
     function novaPalavra() {
@@ -99,6 +99,7 @@
     }
 </script>
 <body onload='Init()'>
+    <p id="howto">Para começar a jogar, clique no botao "Nova Palavra", digite uma letra no campo, e depois clique em "TESTAR LETRA",<br /> para desistir da palavra ou avançar para a proxima, clique novamente em "Nova Palavra"</p>
     <div id="painel">
         <div id="quest" style=""></div>
         <div id="palavra"></div>
