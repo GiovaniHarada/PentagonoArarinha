@@ -257,7 +257,7 @@
     //Direções Movimentos
     function z_onKeyPress(keyid) {
         //Cima
-        if (keyid == 87) {
+        if (keyid == 87 || keyid == 38 ) {
             if (player.vSpeed > -player.maxSpeed) {
                 if (player.vSpeed > 0) {
                     player.vSpeed = 0;
@@ -266,7 +266,7 @@
             }
         }
         //Baixo
-        if (keyid == 83) {
+        if (keyid == 83 || keyid == 40 ) {
             if (player.vSpeed < player.maxSpeed) {
                 if (player.vSpeed < 0) {
                     player.vSpeed = 0;
